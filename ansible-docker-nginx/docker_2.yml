@@ -1,0 +1,9 @@
+---
+- name: Deploy Nginx container using Ansible
+  hosts: test
+  become: yes
+
+  roles:
+    - role: docker2
+      tags: docker2
+

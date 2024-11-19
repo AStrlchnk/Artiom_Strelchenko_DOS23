@@ -1,0 +1,5 @@
+[webservers]
+192.168.126.137 ansible_user=ansible
+
+[test]
+192.168.126.138 ansible_user=ansible
