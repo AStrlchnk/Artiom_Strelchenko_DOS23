@@ -1,0 +1,9 @@
+art@art-virtual-machine:~/GIT/DevOps/docker-compose/exrs1$ curl http://localhost:8080
+<html>
+<head><title>Index of /</title></head>
+<body>
+<h1>Index of /</h1><hr><pre><a href="../">../</a>
+<a href="images.jpeg">images.jpeg</a>                                        20-Nov-2024 12:06                6076
+<a href="orange-cat.jpg">orange-cat.jpg</a>                                     20-Nov-2024 12:07               56358
+</pre><hr></body>
+</html>
