@@ -65,7 +65,7 @@ POSTGRES_USER, POSTGRES_PASSWORD и POSTGRES_DB для
 
 Запускаю docker-compose.yml командой:
 
-    docker-compose up
+    docker-compose up -d
 
 Далее проверю какие контейнеры поднялись
 ![alt text](docker_ps.png)
