@@ -39,6 +39,12 @@
     state: started
   become: yes
 
+- name: create directory
+  file:
+    path: "{{ ansible_user_dir }}/ansible/docker-nginx"
+    state: directory
+    mode: '0705'
+    
 - name: simple html create
   ansible.builtin.copy:
     content: "<html><body><h1>Hello from ansible-managed Nginx!</h1></body></html>"
