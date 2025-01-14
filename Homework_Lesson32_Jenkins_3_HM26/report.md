@@ -27,7 +27,7 @@
 
  <h1 align="center"> Выполнение:</h1>
 
-1. Для Jenkins мастера использую локальную WSL машину на базе Ubuntu 24.02.
+Для Jenkins мастера использую локальную WSL машину на базе Ubuntu 24.02.
  После нескольких дней безуспешных попыток установки в качестве агента на локальную Ubuntu различных версий 18-24.02 на базе VMWare решаю установить локальную ВМ Ubuntu 20.04 server на базе Hyper-V и все получается.
     
         Конфиги машин:
@@ -136,5 +136,46 @@
             This is a Unix agent
             Agent successfully connected and online
     
+Создаю пайплайн под названием maven-sample, который клонирует репу гитхаба с pom.xml и далее билдиться с моиощью maven.
+Предварительно нужно зайти в tools и установить версию maven:
+
+![alt text](image.png)
+
+Пайплайн выглядит следующим образом:
 
 
+        pipeline {
+            agent { label 'node' }
+
+            tools {
+                // Install the Maven version configured as "M3" and add it to the path.
+                maven "M3"
+            }
+
+            stages {
+                stage('Build') {
+                    steps {
+                        // Get some code from a GitHub repository
+                        git 'https://github.com/jglick/simple-maven-project-with-tests.git'
+
+                        // Run Maven on a Unix agent.
+                        sh "mvn -Dmaven.test.failure.ignore=true clean package"
+                    }
+
+                    post {
+                        // If Maven was able to run the tests, even if some of the test
+                        // failed, record the test results and archive the jar file.
+                        success {
+                            junit '**/target/surefire-reports/TEST-*.xml'
+                            archiveArtifacts 'target/*.jar'
+                        }
+                    }
+                }
+            }
+        }
+
+В итоге получаем результаты сборок с отчетами junit
+
+![alt text](image-1.png)
+
+Нестабильные сборки означают, что некоторые тесы не прошли.
