@@ -205,3 +205,8 @@ Jenkins.
         [Pipeline] // node
         [Pipeline] End of Pipeline
         Finished: SUCCESS
+В итоге пайплайн выполняется и в рабочей дириктории агента создается текстовый документ с содержимым: 
+
+        Build step is OK
+        Test step is OK
+        Deploy test is OK
