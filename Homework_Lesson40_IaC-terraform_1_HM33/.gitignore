@@ -1,4 +1,3 @@
-*.png
 # Local .terraform directories
 **/.terraform/*
 
